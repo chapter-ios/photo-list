@@ -10,9 +10,15 @@ import Foundation
 @MainActor
 final class PhotoListViewModel: ObservableObject {
     @Published var photos: [Photo] = []
+    @Published var filteredPhoto: [Photo] = []
     @Published var bookmarkedPhotos: [Photo] = []
     @Published var isLoading = false
     @Published var errorState: String?
+    var searchQuery: String = "" {
+        didSet {
+            self.updateQuery()
+        }
+    }
     
     private let getUseCase: GetPhotoUseCaseProtocol
     private let storage: BookmarkPhotoProtocol
@@ -66,11 +72,24 @@ final class PhotoListViewModel: ObservableObject {
                 loadMore = false
             } else {
                 photos.append(contentsOf: newPhotos)
+                self.filteredPhoto = photos
                 self.page += 1
             }
         } catch {
             print(error.localizedDescription)
             self.errorState = "Mengalami error, Silahkan Refresh dengan klik retry"
         }
+    }
+    
+    private func updateQuery() {
+        if searchQuery.isEmpty {
+            self.filteredPhoto = photos
+            return
+        }
+        
+        self.filteredPhoto = photos.filter {
+            $0.author.lowercased().contains(searchQuery.lowercased())
+        }
+        print("search query is ", searchQuery)
     }
 }
