@@ -15,8 +15,7 @@ struct PhotoListView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 12) {
-                TextField("Find writer", text: $writers)
-                ForEach(showBookmarks ? vm.bookmarkedPhotos : vm.photos) { data in
+                ForEach(showBookmarks ? vm.bookmarkedPhotos : vm.filteredPhoto) { data in
                     PhotoRowView(
                         photo: data,
                         isBookmarked: vm.isBookmarked(data),

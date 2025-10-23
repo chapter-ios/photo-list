@@ -38,15 +38,23 @@ struct PhotoListContainerView: View {
     @ViewBuilder
     private var content: some View {
         
-        if vm.isLoading && vm.photos.isEmpty {
+        if vm.isLoading && vm.filteredPhoto.isEmpty {
             GeneralLoadingView()
         } else if let _ = vm.errorState {
             PhotoListErrorView(vm: vm)
         } else {
-            PhotoListView(
-                vm: vm,
-                showBookmarks: showBookmarks
-            )
+            VStack {
+                if !showBookmarks {
+                    TextField("find author", text: $vm.searchQuery)
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
+                }
+                
+                PhotoListView(
+                    vm: vm,
+                    showBookmarks: showBookmarks
+                )
+            }
         }
     }
 }
