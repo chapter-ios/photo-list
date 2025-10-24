@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		36E241792EAB224A00BBF210 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 36E241782EAB224A00BBF210 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		360F3E072E97935800D12762 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E241792EAB224A00BBF210 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = MyPhotoList;
 			packageProductDependencies = (
+				36E241782EAB224A00BBF210 /* Kingfisher */,
 			);
 			productName = MyPhotoList;
 			productReference = 360F3DF62E97935600D12762 /* MyPhotoList.app */;
@@ -196,6 +202,9 @@
 			);
 			mainGroup = 360F3DED2E97935600D12762;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				36E241772EAB224A00BBF210 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 360F3DF72E97935600D12762 /* Products */;
 			projectDirPath = "";
@@ -555,6 +564,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		36E241772EAB224A00BBF210 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		36E241782EAB224A00BBF210 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36E241772EAB224A00BBF210 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 360F3DEE2E97935600D12762 /* Project object */;
 }

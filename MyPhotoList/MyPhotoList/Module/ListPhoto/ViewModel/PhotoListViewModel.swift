@@ -70,6 +70,7 @@ final class PhotoListViewModel: ObservableObject {
             let newPhotos = try await getUseCase.execute(page: self.page)
             if newPhotos.isEmpty {
                 loadMore = false
+                self.errorState = "Mengalami error, Silahkan Refresh dengan klik retry"
             } else {
                 photos.append(contentsOf: newPhotos)
                 self.filteredPhoto = photos
