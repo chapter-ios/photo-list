@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PhotoListView: View {
     @ObservedObject var vm: PhotoListViewModel
@@ -35,6 +36,12 @@ struct PhotoListView: View {
                 }
             }
         }
+        .refreshable {
+            Task {
+                await vm.loadPhotos()
+            }
+            
+        }
     }
 }
 
@@ -45,16 +52,12 @@ struct PhotoRowView: View {
     
     var body: some View {
         ZStack {
-            AsyncImage(
-                url: URL(string: photo.download_url),
-                content: { image in
-                    image.resizable()
-                        .scaledToFill()
-                },
-                placeholder: {
+            KFImage(URL(string: photo.download_url))
+                .placeholder {
                     LoadingImageView()
                 }
-            )
+                .resizable()
+                .scaledToFill()
             .cornerRadius(8)
             .clipped()
             .overlay(alignment: .topTrailing) {
@@ -79,4 +82,11 @@ struct PhotoRowView: View {
         }
         .padding(.horizontal)
     }
+}
+
+#Preview {
+    let vm = PhotoListViewModel()
+    PhotoListView(
+        vm: PhotoListViewModel(),
+        showBookmarks: false)
 }
