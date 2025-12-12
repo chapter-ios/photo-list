@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhotoListContainerView: View {
-    @StateObject var vm = PhotoListViewModel()
+    @StateObject var vm: PhotoListViewModel
     @State private var showBookmarks = false
     
     var body: some View {
@@ -60,5 +60,6 @@ struct PhotoListContainerView: View {
 }
 
 #Preview {
-    PhotoListContainerView()
+    let vm: PhotoListViewModel = AppDIContainer.shared.container.resolve(PhotoListViewModel.self)!
+    PhotoListContainerView(vm: vm)
 }

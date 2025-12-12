@@ -33,7 +33,8 @@ struct PhotoListErrorView: View {
 }
 
 #Preview {
+    let vm: PhotoListViewModel = AppDIContainer.shared.container.resolve(PhotoListViewModel.self)!
     PhotoListErrorView(
-        vm: PhotoListViewModel()
+        vm: vm
     )
 }

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        PhotoListContainerView()
+        let vm: PhotoListViewModel = AppDIContainer.shared.container.resolve(PhotoListViewModel.self)!
+        PhotoListContainerView(vm: vm)
     }
 }
 

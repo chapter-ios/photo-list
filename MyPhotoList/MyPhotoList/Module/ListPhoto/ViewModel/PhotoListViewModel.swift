@@ -7,7 +7,6 @@
 
 import Foundation
 
-@MainActor
 final class PhotoListViewModel: ObservableObject {
     @Published var photos: [Photo] = []
     @Published var filteredPhoto: [Photo] = []
@@ -27,8 +26,8 @@ final class PhotoListViewModel: ObservableObject {
     private var loadMore = true
     
     init(
-        getUseCase: GetPhotoUseCaseProtocol = PhotoListUseCase(),
-        storage: BookmarkPhotoProtocol = BookmarkStorage()
+        getUseCase: GetPhotoUseCaseProtocol,
+        storage: BookmarkPhotoProtocol
     ) {
         self.getUseCase = getUseCase
         self.storage = storage
@@ -61,6 +60,7 @@ final class PhotoListViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func loadPhotos() async {
         guard !isLoading, loadMore else { return }
         isLoading = true
