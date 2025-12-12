@@ -18,7 +18,7 @@ protocol GetPhotoListRepository {
 final class PhotoRepositoryImplementation: GetPhotoListRepository {
     private let api: APIServiceProtocol
     
-    init(api: APIServiceProtocol = APIService()) {
+    init(api: APIServiceProtocol) {
         self.api = api
     }
     
@@ -33,7 +33,7 @@ final class PhotoRepositoryImplementation: GetPhotoListRepository {
 final class PhotoListUseCase: GetPhotoUseCaseProtocol {
     private let repository: GetPhotoListRepository
     
-    init(repository: GetPhotoListRepository = PhotoRepositoryImplementation()) {
+    init(repository: GetPhotoListRepository) {
         self.repository = repository
     }
     

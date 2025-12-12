@@ -85,8 +85,10 @@ struct PhotoRowView: View {
 }
 
 #Preview {
-    let vm = PhotoListViewModel()
+    let vm: PhotoListViewModel = AppDIContainer.shared.container.resolve(PhotoListViewModel.self)!
+    PhotoListContainerView(vm: vm)
     PhotoListView(
-        vm: PhotoListViewModel(),
-        showBookmarks: false)
+        vm: vm,
+        showBookmarks: false
+    )
 }
